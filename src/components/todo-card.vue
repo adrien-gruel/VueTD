@@ -3,11 +3,11 @@
     <div class="header">
         <p>{{date}}</p>
         <p class="blue"><b>{{titre}}</b></p>
-        <p>{{tasks.lenght}}  taches</p>
+        <p>{{tasks.length}}  taches</p>
     </div>
     <div class="zonentre">
         <new-todo @sendTask="AddTask"></new-todo>
-        <todo-list v-bind:tasks="tasks"></todo-list>
+        <todo-list v-bind:tasks="tasks" @remover="removeTask"></todo-list>
     </div>
 </div>
 </template>
@@ -41,6 +41,9 @@ import TodoList from './todo-list.vue';
             AddTask(task){
                 let newTask = { name: task, statut: false };
                 this.tasks.push(newTask)
+            },
+            removeTask(index){
+                this.tasks.splice(index,1);
             }
         },
     }
